@@ -12,9 +12,10 @@
 
 .lista-filmes article {
     width: 100%;
-    background-color: #fff;
+    background-color: #757575;
     padding: 15px;
     border-radius: 4px;
+    color: #121212;
 }
 
 .lista-filmes strong {

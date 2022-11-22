@@ -1,153 +1,39 @@
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import './header.css';
 import {Menubar} from "primereact/menubar";
-import {InputText} from "primereact/inputtext";
+import {useState} from "react";
+import {Sidebar} from "primereact/sidebar";
+import {PanelMenu} from "primereact/panelmenu";
 import {Button} from "primereact/button";
 
 
 function Header() {
+    const navigate = useNavigate();
+    const [visible, setVisible] = useState(false);
+
+    function navegar(path) {
+        setVisible(false)
+        navigate(path)
+    }
 
     const items = [
+        {label: 'Home', icon: 'pi pi-fw pi-home', command: () => navegar('/')},
+        {label: 'Login', icon: 'pi pi-fw pi-lock', command: () => navegar('/login')},
+        {label: 'Usuários', icon: 'pi pi-fw pi-user', command: () => navegar('/usuarios')},
         {
-            label: 'File',
-            icon: 'pi pi-fw pi-file',
-            items: [
-                {
-                    label: 'New',
-                    icon: 'pi pi-fw pi-plus',
-                    items: [
-                        {
-                            label: 'Bookmark',
-                            icon: 'pi pi-fw pi-bookmark'
-                        },
-                        {
-                            label: 'Video',
-                            icon: 'pi pi-fw pi-video'
-                        },
-
-                    ]
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-fw pi-trash'
-                },
-                {
-                    separator: true
-                },
-                {
-                    label: 'Export',
-                    icon: 'pi pi-fw pi-external-link'
-                }
-            ]
+            label: 'Logout', icon: 'pi pi-fw pi-power-off', command: () => {
+                alert("Deseja relmente sair");
+                navegar('/login')
+            }
         },
-        {
-            label: 'Edit',
-            icon: 'pi pi-fw pi-pencil',
-            items: [
-                {
-                    label: 'Left',
-                    icon: 'pi pi-fw pi-align-left'
-                },
-                {
-                    label: 'Right',
-                    icon: 'pi pi-fw pi-align-right'
-                },
-                {
-                    label: 'Center',
-                    icon: 'pi pi-fw pi-align-center'
-                },
-                {
-                    label: 'Justify',
-                    icon: 'pi pi-fw pi-align-justify'
-                },
-
-            ]
-        },
-        {
-            label: 'Users',
-            icon: 'pi pi-fw pi-user',
-            items: [
-                {
-                    label: 'New',
-                    icon: 'pi pi-fw pi-user-plus',
-
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-fw pi-user-minus',
-
-                },
-                {
-                    label: 'Search',
-                    icon: 'pi pi-fw pi-users',
-                    items: [
-                        {
-                            label: 'Filter',
-                            icon: 'pi pi-fw pi-filter',
-                            items: [
-                                {
-                                    label: 'Print',
-                                    icon: 'pi pi-fw pi-print'
-                                }
-                            ]
-                        },
-                        {
-                            icon: 'pi pi-fw pi-bars',
-                            label: 'List'
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            label: 'Events',
-            icon: 'pi pi-fw pi-calendar',
-            items: [
-                {
-                    label: 'Edit',
-                    icon: 'pi pi-fw pi-pencil',
-                    items: [
-                        {
-                            label: 'Save',
-                            icon: 'pi pi-fw pi-calendar-plus'
-                        },
-                        {
-                            label: 'Delete',
-                            icon: 'pi pi-fw pi-calendar-minus'
-                        },
-
-                    ]
-                },
-                {
-                    label: 'Archieve',
-                    icon: 'pi pi-fw pi-calendar-times',
-                    items: [
-                        {
-                            label: 'Remove',
-                            icon: 'pi pi-fw pi-calendar-minus'
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            label: 'Quit',
-            icon: 'pi pi-fw pi-power-off'
-        }
     ];
 
-
-    return (
-        <header>
-            <Link className="logo" to="/">PrimeFlix</Link>
-            <Link className="favoritos" to="/favoritos">Meus Filmes</Link>
-            <Link className="favoritos" to="/login">Tela de Login</Link>
-            <Link className="favoritos" to="/usuarios">Usuários</Link>
-            <Menubar model={items}
-                     start={<InputText placeholder="Search" type="text"/>}
-                     end={<Button label="Logout" icon="pi pi-power-off"/>}/>
-        </header>
-    );
+    return (<div className="card">
+            <Sidebar visible={visible} onHide={() => setVisible(false)}>
+                <PanelMenu model={items} style={{width:'100%'}}/>
+            </Sidebar>
+            <Button icon="pi pi-bars" onClick={() => setVisible(true)} className="mr-2"/>
+        </div>)
 }
 
 export default Header;
