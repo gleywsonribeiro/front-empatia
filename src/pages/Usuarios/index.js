@@ -33,7 +33,7 @@ const Usuarios = () => {
     return (
         <>
             <Toast ref={toast}/>
-            <div className="p-card-content p-card-body card">
+            <div className="p-card-content p-card-body card flex flex-wrap align-items-center justify-content-center card-container purple-container">
                 <Button icon="pi pi-plus" className="p-button-rounded p-button-warning"
                         aria-label="Notification" onClick={cadastrar}
                         style={{marginTop: 32, marginBottom: 32}}/>
