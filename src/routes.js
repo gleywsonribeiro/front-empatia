@@ -7,6 +7,7 @@ import Erro from "./pages/Erro";
 import Favoritos from "./pages/Favoritos";
 import Login from "./pages/Login";
 import Usuarios from "./pages/Usuarios";
+import CadastroUsuario from "./pages/CadastroUsuario";
 
 function RouteApp() {
 
@@ -21,6 +22,7 @@ function RouteApp() {
                 {/*<Route path="/favoritos" element={<Favoritos />} />*/}
                 <Route path="/login" element={ <Login/> }/>
                 <Route path="/usuarios" element={ <Usuarios/> }/>
+                <Route path="/usuarios/cadastro" element={ <CadastroUsuario/> }/>
                 <Route path="*" element={<Erro />} />
             </Routes>
         </BrowserRouter>

@@ -5,10 +5,12 @@ import {useEffect, useRef, useState} from "react";
 import api from "../../services/api";
 import {Button} from "primereact/button";
 import {Toast} from "primereact/toast";
+import {useNavigate} from "react-router-dom";
 
 
 const Usuarios = () => {
     const [usuarios, setUsuarios] = useState([]);
+    const navigate = useNavigate();
     const toast = useRef(null);
 
     useEffect(() => {
@@ -25,8 +27,7 @@ const Usuarios = () => {
     }, [])
 
     const cadastrar = () => {
-        debugger
-        toast.current.show({severity: 'info', summary: 'Importante', detail: 'Botão está sendo clicado', life: 3000});
+        navigate('/usuarios/cadastro');
     }
 
     return (

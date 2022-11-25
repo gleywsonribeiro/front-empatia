@@ -11,7 +11,7 @@ function Header() {
     const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
 
-    function navegar(path) {
+    const navegar = (path) => {
         setVisible(false)
         navigate(path)
     }
@@ -28,12 +28,14 @@ function Header() {
         },
     ];
 
-    return (<div className="card">
+    return (
+        <div className="card">
             <Sidebar visible={visible} onHide={() => setVisible(false)}>
                 <PanelMenu model={items} style={{width:'100%'}}/>
             </Sidebar>
             <Button icon="pi pi-bars" onClick={() => setVisible(true)} className="mr-2"/>
-        </div>)
+        </div>
+    )
 }
 
 export default Header;
